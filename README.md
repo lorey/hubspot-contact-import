@@ -17,19 +17,20 @@ So after you have *manually* downloaded all your contacts' vcards by hand, you c
 
 ## Usage
 
-Please note that this is in alpha. Errors may occur, please use your brain.
+Please note that this is in alpha. The tool is currently only creating contacts for unknown emails.
 
 1. Download the vcards of the Xing contacts you wish to import.
 2. Put them into `out/vcards`
-2. Run xing-to-hubspot.py inside the bin folder.
-3. Enjoy the new or updated contacts within your hubspot account.
+3. Run xing-to-hubspot.py inside the bin folder.
+4. Enjoy the new or updated contacts within your hubspot account.
+5. (Merge contacts that belong to the same person and they will never be created again, e.g. if you had peter@miller.com and petermiller@gmail was created as a new contact)
 
 ## Dependencies
 
 This plugin depends on:
 
-- vobject to read the vcards
-- requests to make API calls to hubspot
+- [vobject](https://github.com/eventable/vobject) to read the vcards
+- [requests](https://github.com/kennethreitz/requests) to make API calls to hubspot
 
 ## Installation
 
