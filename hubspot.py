@@ -8,6 +8,20 @@ import config
 BASE_URL = 'https://api.hubapi.com/'
 
 
+class Contact(object):
+    data = {}
+
+    def __init__(self, data):
+        self.data = data
+
+    def get_email(self):
+        return next((item for item in self.data['identity-profiles'][0]['identities'] if item["type"] == "EMAIL"))['value']
+
+    def get_name(self):
+        properties_ = self.data['properties']
+        return properties_['firstname']['value'] + ' ' + properties_['lastname']['value']
+
+
 def fetch_contacts():
     contacts = []
 
@@ -20,7 +34,7 @@ def fetch_contacts():
         json_data = json.loads(response_data)
 
         contacts_in_result = json_data['contacts']
-        contacts.extend(contacts_in_result)
+        contacts.extend([Contact(contact_data) for contact_data in contacts_in_result])
 
         has_more = json_data['has-more']
         offset = json_data['vid-offset']
@@ -44,7 +58,7 @@ def find_contact_by_email(email):
         return None
 
     response_data = response.content.decode('utf-8')
-    return json.loads(response_data)
+    return Contact(json.loads(response_data))
 
 
 def get_url_to_find_contact_by_email(email):
@@ -81,21 +95,21 @@ def get_property_dict(key, value):
 
 
 def find_contact(query):
-    url = get_url_to_find_contact(query)
+    contacts = find_contacts(query)
+    return next(contacts, None)
+
+
+def find_contacts(query):
+    url = get_url_to_find_contacts(query)
     response = requests.get(url)
-    if response.status_code == 404:
-        return None
 
     response_data = response.content.decode('utf-8')
     search_result = json.loads(response_data)
 
-    if search_result['total'] == 0:
-        return None
-
-    return search_result['contacts'][0]
+    return [Contact(result) for result in search_result['contacts']]
 
 
-def get_url_to_find_contact(query):
+def get_url_to_find_contacts(query):
     params = {
         'hapikey': config.HUBSPOT_HAPIKEY,
         'q': query,
