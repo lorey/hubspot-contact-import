@@ -52,3 +52,11 @@ Create a config.py file in the main directory with the following contents
 ## License
 
 GPL
+
+
+## Also check my other HubSpot-related projects
+
+If you came here for the HubSpot integration, make sure to check out my other projects:
+
+- [Totally not Jarvis, a personal assisstant bot with HubSpot integration](https://github.com/lorey/totally-not-jarvis)
+- [hubspot-reporting: tool to generate diagrams from your HubSpot data](https://github.com/lorey/hubspot-reporting)
