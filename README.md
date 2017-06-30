@@ -58,5 +58,6 @@ GPL
 
 If you came here for the HubSpot integration, make sure to check out my other projects:
 
+- [awesome-hubspot: Tools and libraries for HubSpot](https://github.com/lorey/awesome-hubspot)
 - [Totally not Jarvis, a personal assisstant bot with HubSpot integration](https://github.com/lorey/totally-not-jarvis)
 - [hubspot-reporting: tool to generate diagrams from your HubSpot data](https://github.com/lorey/hubspot-reporting)
